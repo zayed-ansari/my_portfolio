@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zayed Ansari - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root {
+            --primary: #e0e0e0;
+            --secondary: #a0a0a0;
+            --accent: #3498db;
+            --light: #121212;
+            --text: #e0e0e0;
+            --surface: #1e1e1e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Fira Sans', sans-serif;
+            font-weight: 300;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--accent);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #1a6ca4;
+        }
+
+        header {
+            background-color: var(--surface);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            top: 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .nav-toggle {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--text);
+            cursor: pointer;
+            z-index: 101;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            font-weight: 500;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--text);
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+        }
+
+        .get-in-touch-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--accent);
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .get-in-touch-btn:hover {
+            background-color: #1a6ca4;
+            transform: translateY(-2px);
+            color: #fff;
+        }
+
+        .hero {
+            padding: clamp(6rem, 15vw, 10rem) 5% clamp(2rem, 10vw, 4rem);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: clamp(1.8rem, 6vw, 2.5rem);
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .hero h2 {
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+            font-weight: 400;
+        }
+
+        .hero p {
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
+            margin-bottom: 2rem;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .section {
+            padding: clamp(2rem, 10vw, 4rem) 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            margin-bottom: 2rem;
+            color: var(--primary);
+            font-size: clamp(1.5rem, 5vw, 1.8rem);
+        }
+
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--surface);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            margin-bottom: 0.8rem;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            color: var(--primary);
+        }
+
+        .project-content p {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            background-color: #333;
+            color: var(--accent);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: clamp(0.7rem, 2vw, 0.8rem);
+        }
+
+        .project-link {
+            cursor: pointer;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 200;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: var(--surface);
+            margin: 1% auto ;
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 900px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            color: var(--text);
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .modal-close:hover {
+            color: var(--accent);
+        }
+
+        .modal h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal h4 {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            margin: 1.5rem 0 0.5rem;
+        }
+
+        .modal p {
+            color: var(--text);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal pre {
+            background-color: #2a2a2a;
+            border-radius: 10px;
+            overflow-x: auto;
+            color: var(--accent);
+            font-size: 1rem;
+        }
+        .modal pre code{
+            color: rgb(184, 132, 70);
+            background-color: #121212;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background-color: var(--surface);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .skill-category h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-size: clamp(1rem, 3vw, 1.2rem);
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            font-size: clamp(0.85rem, 2.5vw, 1rem);
+        }
+
+        .skill-list li::before {
+            content: '•';
+            color: var(--accent);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-right: 0.5em;
+        }
+
+        .education {
+            background-color: var(--surface);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .education-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .education-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .education-item h3 {
+            font-size: clamp(1rem, 3vw, 1.1rem);
+            color: var(--primary);
+        }
+
+        .education-item p {
+            color: var(--secondary);
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+        }
+
+        footer {
+            background-color: var(--surface);
+            color: var(--text);
+            text-align: center;
+            padding: clamp(1rem, 5vw, 2rem) 0;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            opacity: 0.8;
+            font-size: clamp(0.8rem, 2.5vw, 1rem);
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            nav {
+                flex-wrap: wrap;
+                padding: 0.5rem 5%;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: var(--surface);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                padding: 1rem 0;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 0.75rem 1rem;
+                width: 100%;
+                text-align: center;
+            }
+
+            .social-links {
+                display: none;
+            }
+
+            .hero {
+                text-align: center;
+                padding-top: clamp(5rem, 12vw, 8rem);
+            }
+
+            .projects, .skills-container {
+                grid-template-columns: 1fr;
+            }
+
+            .get-in-touch-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            .modal-content {
+                margin: 10% auto;
+                padding: 1.5rem;
+                width: 95%;
+            }
+
+            .modal h3 {
+                font-size: 1.3rem;
+            }
+
+            .modal h4 {
+                font-size: 1rem;
+            }
+
+            .modal p, .modal pre {
+                font-size: 0.9rem;
+                color: black;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1rem;
+            }
+
+            .nav-toggle {
+                font-size: 1.2rem;
+            }
+
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 0.5rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero h2 {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+            }
+
+            .project-content, .skill-category {
+                padding: 1rem;
+            }
+
+            .get-in-touch-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/default.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <nav>
+            <div class="logo">Z A Y E D   A N S A R I</div>
+            <button class="nav-toggle"><i class="fas fa-bars"></i></button>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#projects">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="#education">Education</a>
+            </div>
+            <div class="social-links">
+                <a href="https://github.com/zayed-ansari" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/zayed-ansari-805a8525a/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://x.com/zayedansari2004" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section --> 
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Hi I'm &nbsp;Z A Y E D</h1>
+            <h2>Building Neural Networks That Matter</h2>
+            <p>Passionate about building machine learning models.<br>Currently exploring transformer architectures and I like to share insights on X (Twitter).<br>Always learning! :)</p>
+            <div class="contact-info">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ansarizayed04@gmail.com" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-envelope"></i> ansarizayed04@gmail.com</a>
+            </div>
+            <div class="contact-info">
+                <a href="https://x.com/zayedansari2004" target="_blank" ><i class="fab fa-twitter"></i> &nbsp;Z A Y E D &nbsp;A N S A R I</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects">
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>Multiclass Classification</h3>
+                    <p>Developed a deep learning model capable of classifying animals across 153 different classes.</p>
+                    <div class="tags">
+                        <span class="tag">Deep Learning</span>
+                        <span class="tag">HuggingFace</span>
+                        <span class="tag">Streamlit</span>
+                    </div>
+                    <a class="project-link" data-modal="modal1">View Details →</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>CNN Image Classifier: Dog vs. Cat</h3>
+                    <p>Built a CNN from scratch to classify dog and cat images with ~85% accuracy.</p>
+                    <div class="tags">
+                        <span class="tag">CNN</span>
+                        <span class="tag">Transfer Learning</span>
+                        <span class="tag">Computer Vision</span>
+                    </div>
+                    <a class="project-link" data-modal="modal2">View Details →</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>Heart Disease Predictor</h3>
+                    <p>Developed a Random Forest model with 92% accuracy using the UCI Heart Disease dataset.</p>
+                    <div class="tags">
+                        <span class="tag">Random Forest</span>
+                        <span class="tag">Logistic Regression</span>
+                        <span class="tag">KNeighborsClassifier</span>
+                        <span class="tag">Healthcare</span>
+                        <span class="tag">Classification</span>
+                    </div>
+                    <a class="project-link" data-modal="modal3">View Details →</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>Posting more on my GitHub</h3>
+                    <p>Check out :)</p>
+                    <p><a href="https://github.com/zayed-ansari/" target="_blank">GitHub →</a></p>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Modals -->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <button class="modal-close"><i class="fas fa-times"></i></button>
+                <h3>Multiclass Classification</h3>
+                <p><strong>What I Did:</strong><br>
+                    <li>Built a model to classify 153 animal species using ensemble learning.</li>
+                    <li>Integrated data preprocessing with augmentation (random flips, crops).</li>
+                    <li>I used two Transfer Learning models InceptionV3 and Xception then I concatenate them.</li>
+                    <li>And then deployed the model as an interactive web app using Hugging Face Spaces and Streamlit.</li>
+                </p>
+                <h4>Code Snippet</h4>
+                <p>Showing some of the code:</p>
+                <pre> <code class="python"># This is data augmentation 
+train_datagen = ImageDataGenerator(
+rescale = 1/255.0,
+rotation_range=15,
+width_shift_range=0.1,
+height_shift_range=0.1,
+horizontal_flip=True,
+shear_range=0.1,
+zoom_range=0.2, 
+fill_mode = "nearest",
+validation_split = 0.1
+)
+val_datagen = ImageDataGenerator(rescale=1/255.0,validation_split = 0.1)
+img_size = (224, 224)
+
+train_data = train_datagen.flow_from_directory(data_dir, batch_size=32, class_mode="categorical",target_size=img_size, subset = "training")
+val_data = val_datagen.flow_from_directory(data_dir, batch_size=32, class_mode="categorical",target_size=img_size, subset = "validation")
+
+# Model architecture
+base_model_1 = tf.keras.applications.InceptionV3(weights="imagenet", input_shape=(224, 224,3), include_top=False)
+base_model_1.trainable = False
+base_model_2 = tf.keras.applications.Xception(weights="imagenet", include_top=False, input_shape=(224,224, 3))
+base_model_2.trainable = False
+
+input_layer = Input(shape=(224, 224, 3))
+x1 = base_model_1(input_layer, training = False)
+x1 = GlobalAveragePooling2D()(x1)
+
+x2 = base_model_2(input_layer, training= False)
+x2 = GlobalAveragePooling2D()(x2)
+
+merged = concatenate([x1, x2])
+x = Dense(512, activation = "relu")(merged)
+x = Dropout(0.4)(x)
+outputs = Dense(153, activation = "softmax")(x)
+
+ensemble_model = tf.keras.Model(inputs = input_layer, outputs = outputs) 
+ensemble_model.compile(loss = 'categorical_crossentropy', optimizer=Adam(), metrics= ['accuracy'])
+
+base_model_1.trainable = True
+for layer in base_model_1.layers[:100]:
+    layer.trainable = False
+
+base_model_2.trainable = True
+for layer in base_model_2.layers[:100]:
+    layer.trainable = False
+
+
+ensemble_model.compile(loss = 'categorical_crossentropy', optimizer=Adam(1e-5), metrics= ['accuracy'])
+history_model_1_tuned = ensemble_model.fit(train_data, epochs=20, validation_data=val_data, callbacks=[lr])
+</code>
+                </pre>
+                <h4>Challenges Faced</h4>
+                <p>Handling class imbalance was tough—some species had few samples, leading to overfitting. Used weighted loss functions and oversampling to mitigate. And simple models and even transfer learning models weren't performing upto the mark so had to use ensemble learning to train on the data. Deployment on Hugging Face also required optimizing model size for faster inference.</p>
+                <p><a href="https://huggingface.co/spaces/zayed2004/Classify-153" target="_blank">Live Demo</a></p>
+            </div>
+        </div>
+
+        <div id="modal2" class="modal">
+            <div class="modal-content">
+                <button class="modal-close"><i class="fas fa-times"></i></button>
+                <h3>CNN Image Classifier: Dog vs. Cat</h3>
+                <p><strong>What I Did:</strong> <br> <li>Designed and trained a CNN from scratch,</li> <li>Then improved it with transfer learning using Xception.</li> <li> Preprocessed images with resizing and normalization, achieving ~96% accuracy on a Kaggle dataset.</li></p>
+                <h4>Code Snippet</h4>
+                <pre>
+<code>
+# Using data augmentation
+train_data_generator = ImageDataGenerator(
+    rescale=1/255., # Normalize the pixel values
+    rotation_range=30, # Randomly rotate the images by up to 30 degrees
+    width_shift_range=0.2, # Randomly shift images horizontally by up to 20%
+    height_shift_range=0.2, # Randomly shift images vertically by up to 20%
+    shear_range=0.2, # Apply shear transformations
+    zoom_range=0.2, # Randomly zoom in/out by up to 20%
+    horizontal_flip=True # Randomly flip images horizontally 
+)
+
+# Load augmented training data
+train_data_augmented = train_data_generator.flow_from_directory(train_dir, batch_size=32, class_mode='binary', target_size=Image_size)
+
+# Model 1: A CNN model training on augmented data
+model_1 = Sequential([
+        Conv2D(32, (3, 3), input_shape=(224, 224, 3), activation='relu'),
+        MaxPooling2D(pool_size=(2, 2)),
+
+        Conv2D(64, (3, 3), activation='relu'),
+        MaxPooling2D(pool_size=(2, 2)),
+
+        Conv2D(128, (3, 3), activation='relu'),
+        MaxPooling2D(pool_size=(2, 2)),
+        Flatten(),
+
+        Dense(128, activation='relu'),
+        Dense(1, activation='sigmoid')
+])
+# Compile the model
+model_1.compile(loss = 'binary_crossentropy', optimizer = Adam(), metrics = ['accuracy'])
+
+# Fit the model with augmented data
+history_1 = model_1.fit(train_data_augmented, epochs = 10,validation_data = val_data, callbacks = [checkpoint_callback])
+
+### Trying transfer learning
+xception_model = Xception(weights = 'imagenet', include_top = False, input_shape = (224, 224, 3)) # Here the Xception model is trained on Imagenet, which is used as feature extractor 
+# Include top is False as I am going to another classification head
+xception_model.trainable = False # Freezing the base mode to retain pre-trained weights
+
+# Add new classification head
+model_2 = Sequential([
+    xception_model, # The pre-trained xception model
+    layers.GlobalAveragePooling2D(), # Global average pooling to reduce spatical dimensions
+
+    Dense(64, activation = 'relu'), # Dense layer for feature extraction
+    Dropout(0.5), # Dropping out 50% of neurons
+    Dense(1, activation = 'sigmoid')
+])
+
+# Compile the Model 1
+model_2.compile(loss = 'binary_crossentropy', optimizer=Adam(), metrics = ['accuracy'])
+
+# Fit the Model 1 with augmented data
+history_2 = model_2.fit(train_data_augmented, epochs=10, validation_data=val_data, callbacks=[checkpoint_callback])
+</code>
+                </pre>
+                <h4>Challenges Faced</h4>
+                <p>Initial model was getting confused and wasn't able to predict dog class. Even though I fixed it but the result wasn't up to the mark so, I had to use Transfer learning. Also faced memory issues with large batch sizes on my GPU.</p>
+                <p><a href="https://github.com/zayed-ansari/Cat-vs.-Dog-Image-Classification" target="_blank">GitHub Repo</a></p>
+            </div>
+        </div>
+
+        <div id="modal3" class="modal">
+            <div class="modal-content">
+                <button class="modal-close"><i class="fas fa-times"></i></button>
+                <h3>Heart Disease Predictor</h3>
+                <p><strong>What I Did:</strong><br><li>Created models using Logistic Regression, KNeighborsClassifier, Random Forest classifier on the UCI Heart Disease dataset.</li> <li>
+                    Performed feature engineering (e.g., normalizing cholesterol levels) and analyzed feature importance to identify key predictors like age and chest pain type.</li></p>
+                <h4>Code Snippet</h4>
+                <pre>
+                    <code># Importing the libraries 
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.pipeline import Pipeline
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report, ConfusionMatrixDisplay
+from sklearn.ensemble import RandomForestClassifier 
+
+X = heart_df.drop('target', axis = 1)
+y = heart_df['target']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=101)
+
+# Scaling the data
+scaler = StandardScaler()
+scaled_X_train = scaler.fit_transform(X_train)
+scaled_X_test= scaler.fit_transform(X_test)
+
+# Logistic Regression
+
+logistic_model = LogisticRegression()
+logistic_model.fit(scaled_X_train, y_train)
+
+# KNN Model
+
+knn =  KNeighborsClassifier()
+operations = [('scaler',scaler),('knn',knn)]
+pipe = Pipeline(operations)
+k_values = list(range(1,15))
+
+
+parameter_grid = {
+    'knn__n_neighbors': k_values
+}
+
+cv_classifier = GridSearchCV(pipe, param_grid=parameter_grid, cv = 5, scoring = 'accuracy')
+cv_classifier.fit(X_train, y_train)
+
+knn_final_model = KNeighborsClassifier(n_neighbors=1)
+scaler = StandardScaler()
+operations = [('scaler',scaler),('knn',knn_final_model)]
+pipe = Pipeline(operations)
+pipe.fit(X_train, y_train)
+
+# Random Forest
+
+rf_model = RandomForestClassifier()
+rf_param = {
+    'n_estimators': [10,50,1100,200],
+    'max_features':[2,3,4,5],
+    'bootstrap':[True, False],
+    'oob_score':[True, False]
+}
+grid = GridSearchCV(rf_model, rf_param)
+grid.fit(X_train, y_train)
+
+grid.best_params_
+{'bootstrap': True, 'max_features': 2, 'n_estimators': 50, 'oob_score': True}
+rf_prediction = grid.predict(X_test)
+
+# Comparing the scores
+comp_score ={
+    'Model': ['Logistic Regression', 'KNN', 'Random Forest'],
+    'Accuracy':[0.86, 1.0, 1.0 ],
+    'Precision': [ 0.92, 1.00, 1.00],
+    'Recall':[0.81, 1.00, 1.00],
+    'F1 Score':[0.86, 1.00, 1.00]
+}
+pd.DataFrame(comp_score)
+                    </code>
+                </pre>
+                <h4>Challenges Faced</h4>
+                <p>Missing data in the dataset required imputation strategies—tried mean and median, settled on KNN imputation. Tuning hyperparameters took time; grid search was slow on my machine as it was using CPU.</p>
+                <p><a href="https://github.com/zayed-ansari/Heart-Disease_Classifier" target="_blank">GitHub Repo</a></p>
+            </div>
+        </div>
+
+        <div id="modal4" class="modal">
+            <div class="modal-content">
+                <button class="modal-close"><i class="fas fa-times"></i></button>
+                <h3></h3>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3>Technical Skills</h3>
+                <ul class="skill-list">
+                    <li>Predictive Modeling</li>
+                    <li>Data Modeling</li>
+                    <li>Convolutional Neural Networks</li>
+                    <li>Natural Language Processing</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Techniques</h3>
+                <ul class="skill-list">
+                    <li>Statistical & Predictive Analytics</li>
+                    <li>Machine Learning Algorithms</li>
+                    <li>Data Preprocessing</li>
+                    <li>Feature Engineering</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Tools & Frameworks</h3>
+                <ul class="skill-list">
+                    <li>Scikit-Learn</li>
+                    <li>NumPy</li>
+                    <li>Pandas</li>
+                    <li>TensorFlow</li>
+                    <li>PyTorch</li>
+                    <li>Flask</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Deployment</h3>
+                <ul class="skill-list">
+                    <li>Hugging Face</li>
+                    <li>Streamlit</li>
+                    <li>Model Deployment</li>
+                    <li>Version Control (Git)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Zayed Ansari - MLE</p>
+    </footer>
+
+    <script>
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const projectLinks = document.querySelectorAll('.project-link');
+        const modals = document.querySelectorAll('.modal');
+        const closeButtons = document.querySelectorAll('.modal-close');
+
+        // Navbar toggle
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Open modal
+        projectLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const modalId = link.getAttribute('data-modal');
+                const modal = document.getElementById(modalId);
+                modal.style.display = 'block';
+            });
+        });
+
+        // Close modal
+        closeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const modal = button.closest('.modal');
+                modal.style.display = 'none';
+            });
+        });
+
+        // Close modal on outside click
+        window.addEventListener('click', (e) => {
+            modals.forEach(modal => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
